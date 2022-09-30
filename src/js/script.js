@@ -144,5 +144,64 @@ const createRegistration = async (event_id, data) => {
   }
 };
 
-checkEvent(1);
-createRegistration(1, dummy);
+const renderForm = (url) => {
+  //create a form element
+  var formElement = document.createElement("form");
+  formElement.className = "modal-content__form";
+  formElement.setAttribute("method", "post");
+  formElement.setAttribute("action", url);
+  //create a label for fullname
+  var lb_FN = document.createElement("label");
+  lb_FN.setAttribute("for", "Fullname");
+  lb_FN.innerHTML = "Full Name";
+  // Create an input element for Full Name
+  var FN = document.createElement("input");
+  FN.setAttribute("type", "text");
+  FN.setAttribute("name", "FullName");
+  //   FN.setAttribute("placeholder", "Full Name");
+  //create label for email
+  var lb_email = document.createElement("label");
+  lb_email.setAttribute("for", "emailID");
+  lb_email.innerHTML = "Email";
+  // Create an input element for emailID
+  var EID = document.createElement("input");
+  EID.setAttribute("type", "text");
+  EID.setAttribute("name", "emailID");
+  //   EID.setAttribute("placeholder", "E-Mail ID");
+
+  // create a submit button
+  var BTN = document.createElement("button");
+  BTN.setAttribute("type", "submit");
+  BTN.setAttribute("value", "Submit");
+  BTN.style.width = "100px";
+  BTN.style.height = "30px";
+  BTN.innerHTML = "Submit";
+
+  //append everything to form
+  formElement.appendChild(lb_FN);
+  formElement.appendChild(FN);
+  formElement.appendChild(lb_email);
+  formElement.appendChild(EID);
+  formElement.appendChild(BTN);
+  return formElement;
+};
+
+var register_btn = document.querySelector(".featevent-info__register--btn");
+
+register_btn.addEventListener("click", () => {
+  var modal = document.getElementById("myModal");
+  var modalContent = document.querySelector(".modal-content");
+  var span = document.getElementsByClassName("close")[0];
+
+  const newForm = renderForm("test");
+  modalContent.appendChild(newForm);
+
+  modal.style.display = "block";
+  span.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+});
+
+// console.log(register_btn);
+// checkEvent(1);
+// createRegistration(1, dummy);
