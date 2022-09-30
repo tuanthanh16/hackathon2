@@ -55,10 +55,17 @@ const data = [
       "http://www.progetto.cz/wp-content/uploads/2018/03/20-prague-half-marathon-2.jpg",
   },
 ];
+let liveData = [];
 const url = "https://test-api.codingbootcamp.cz/api/1f3309ad/events";
 const headers = {
   "Content-Type": "application/json",
   Accept: "application/json",
+};
+const dummy = {
+  name: "Tuan",
+  surname: "VU",
+  email: "test@gmail.com",
+  phone_no: "012030355",
 };
 
 const fetchData = async () => {
@@ -68,7 +75,8 @@ const fetchData = async () => {
   });
   if (response.ok) {
     const data = await response.json();
-    console.log(data);
+    liveData = [...data];
+    console.log(liveData);
   }
 };
 
@@ -109,3 +117,32 @@ data.forEach((item, index) => {
     listHtml.appendChild(evenHtml);
   }
 });
+
+const registerEvent = async () => {};
+const checkEvent = async (event_id) => {
+  const url = `https://test-api.codingbootcamp.cz/api/1f3309ad/events/${event_id}`;
+  const response = await fetch(url, {
+    method: "GET",
+    headers: headers,
+  });
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data);
+  }
+};
+
+const createRegistration = async (event_id, data) => {
+  const url = `https://test-api.codingbootcamp.cz/api/1f3309ad/events/${event_id}/registrations`;
+  const response = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: headers,
+  });
+  if (response.ok) {
+    const result = await response.json();
+    console.log(result);
+  }
+};
+
+checkEvent(1);
+createRegistration(1, dummy);
