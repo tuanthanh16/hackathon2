@@ -198,6 +198,7 @@ register_btn.addEventListener("click", () => {
 
   modal.style.display = "block";
   span.addEventListener("click", () => {
+    newForm.remove();
     modal.style.display = "none";
   });
 });
