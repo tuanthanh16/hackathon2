@@ -93,17 +93,19 @@ featHtml.appendChild(listClass);
 const listHtml = document.querySelector(".list");
 
 // const temp = event1.render();
-data.forEach((item) => {
-  const eventName = item.name;
-  const evenDate = item.date;
-  const evenDescription = item.description;
-  const evenImage = item.image_url;
-  const eventItem = new api_event(
-    eventName,
-    evenDescription,
-    evenDate,
-    evenImage
-  );
-  const evenHtml = eventItem.render();
-  listHtml.appendChild(evenHtml);
+data.forEach((item, index) => {
+  if (index > 0) {
+    const eventName = item.name;
+    const evenDate = item.date;
+    const evenDescription = item.description;
+    const evenImage = item.image_url;
+    const eventItem = new api_event(
+      eventName,
+      evenDescription,
+      evenDate,
+      evenImage
+    );
+    const evenHtml = eventItem.render();
+    listHtml.appendChild(evenHtml);
+  }
 });
